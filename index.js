@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const mysql = require("mysql");
 const cTable = require("console.table");
 
-const choiceOptions = ["View all employees", "View all departments", "View all roles", "Update role", "Add department", "Add employee", "Remove employee", "Exit"]
+const choiceOptions = ["View all employees", "View all departments", "View all roles", "Add department", "Add employee", "Remove employee", "Exit"]
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -32,9 +32,6 @@ const start = () => {
                  break;
                 case "View all roles":
                  viewRoles();
-                 break;
-                 case "Update role":
-                 updateRole();
                  break;
                 case "Add department":
                  addDepartment();
@@ -83,4 +80,74 @@ const start = () => {
             });
         };
 
-         
+        // add a department
+        const addDepartment = () => {
+            inquirer.prompt([
+                {
+                    name: "addDept",
+                    type: "input",
+                    message: "What is the name of your new department?"
+
+                }]).then(answer => {
+                    connection.query(`INSERT INTO departments (department_name) VALUES ("${answer.addDept}")`, (err, res) => {
+                    if (err) throw err;
+                    console.table("Add Department", res);
+                    start();
+                });
+            });
+        };
+        //add a new eployee
+        const addEmployee = () => {
+            inquirer.prompt([
+                {
+                    name: "addFName",
+                    type: "input",
+                    message: "What is the employee's first name?"
+                },
+                {
+                    name: "addLName",
+                    type: "input",
+                    message: "What is the employee's last name?"
+                },
+                {
+                    name: "addEmpRole",
+                    type: "input",
+                    message: "What is the employee's Role - 1. Management, 2. Sales , 3. IT , 4: Human Resources , 5. Legal Team , 6. Accounting?"
+                },
+                {
+                    name: "addEmpManager",
+                    type: "input",
+                    message: "What is the employee's manager's ID - 1. Cosmin, 2. James, 3. Jeremy, 4. Richard, 5. Justin, 6. Cory?"
+
+                }]).then(res => {
+                    connection.query('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [res.addFName, res.addLName, res.addEmpRole, res.addEmpManager], (err, res) => {
+                    if (err) throw err;
+                    console.table("Successfully Inserted");
+                    start();
+                    });
+                });
+            };
+
+        const removeEmployee = () => {
+                    connection.query(`SELECT employees.first_name, employees.id FROM employees`, (err, res) => {
+                        if (err) throw err;
+                    });
+                inquirer.prompt([
+                    {
+                        name: 'removeID',
+                        type: 'input',
+                        message: "Which employee ID would you like to remove?",
+                    }
+                ]).then(answer => {
+                    connection.query(`DELETE FROM employees WHERE id = ?`, [answer.removeID], (err, res) => {
+                        if (err) throw err;
+                        console.log("Successfully deleted");
+                        start();
+                    });
+                });
+            };
+            
+    connection.connect(err => {
+    if(err) throw err;
+      start();
+    });
