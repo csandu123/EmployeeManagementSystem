@@ -8,6 +8,8 @@ First you want to clone this repo then run npm install and install the dependenc
 
 After sourcing the schema and seed files, invoke the application by running "node index.js" in your console.
 
+Must have node and MySql installed.
+
 ## Check out this video to see how this application in use:
 
 
