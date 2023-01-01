@@ -1,6 +1,6 @@
 # Welcome to my employee management system. 
 
-This application was made for businesses looking to manage employees. You can add and remove employees and assign them to different departments and managers. 
+This application was made for businesses looking to manage employees. You can add and remove employees as well as departments and assign them to different departments and managers. 
 
 ## Usage
 
