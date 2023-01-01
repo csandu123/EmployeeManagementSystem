@@ -1,9 +1,9 @@
 # Welcome to my employee management system. 
 
 This application was made with the scope of business organization in mind. It has a multitude of features such as but not limited to: 
-Adding and removing employees
-Adding new departments
-Viewing all your employees with their respective information such as role and salary
+* Adding and removing employees
+* Adding new departments
+* Viewing all your employees with their respective information such as role and salary
 
 ## Usage
 
