@@ -54,4 +54,33 @@ const start = () => {
             });
         };
 
-        
+         // function to view employees
+         const viewEmployees = () => {
+            connection.query (`SELECT e.id, e.first_name AS "First Name", e.last_name AS "Last Name", r.title, d.department_name AS "Department", IFNULL(r.salary, 'No Data') AS "Salary", CONCAT(m.first_name," ",m.last_name) AS "Manager"
+            FROM employees e LEFT JOIN roles r ON r.id = e.role_id LEFT JOIN departments d ON d.id = r.department_id
+            LEFT JOIN employees m ON m.id = e.manager_id ORDER BY e.id;`, (err, res) => {
+                if (err) throw err;
+                console.table("All Employees", res);
+                start();
+            });
+        };
+
+        // function to view departments
+        const viewDepartment = () => {
+            connection.query(`SELECT * FROM departments`, (err, res) => {
+                if (err) throw err;
+                console.table("All Departments", res);
+                start();
+            });
+        };
+
+        // function to view roles
+        const viewRoles = () => {
+            connection.query(`SELECT * FROM roles`, (err, res) => {
+                if (err) throw err;
+                console.table("All Roles", res);
+                start();
+            });
+        };
+
+         
