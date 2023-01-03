@@ -13,7 +13,7 @@ After sourcing the schema and seed files, invoke the application by running "nod
 
 Must have node and MySql installed.
 
-## Check out this video to see how this application in use: https://www.dropbox.com/s/nlx24smi1tfvl04/index.js%20-%20EMS%20-%20Visual%20Studio%20Code%202023-01-01%2000-22-16.mp4?dl=0
+## Check out this video to see this application in use: https://www.dropbox.com/s/nlx24smi1tfvl04/index.js%20-%20EMS%20-%20Visual%20Studio%20Code%202023-01-01%2000-22-16.mp4?dl=0
 
 
 To collaborate on future projects, contact me on Github!
